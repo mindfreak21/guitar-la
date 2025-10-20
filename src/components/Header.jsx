@@ -1,10 +1,14 @@
 import { Fragment } from "react";
-import { useMemo } from "react";
-export default function Header({ car,removeFromCar,increaseQuantity,decreaseQuantity,clearCar }) {
-  // derivate state
-  const isEmpty = useMemo(() => car.length === 0,[car]);
-  const carTotal = useMemo(()=> car.reduce((total,item)=> total + (item.qty * item.price),0),[car]);
 
+export default function Header({
+  car,
+  removeFromCar,
+  increaseQuantity,
+  decreaseQuantity,
+  clearCar,
+  isEmpty,
+  carTotal,
+}) {
   return (
     <>
       <header className="py-5 header">
@@ -55,18 +59,19 @@ export default function Header({ car,removeFromCar,increaseQuantity,decreaseQuan
                               <td>{guitar.name}</td>
                               <td className="fw-bold">${guitar.price}</td>
                               <td className="flex align-items-start gap-4">
-                                <button 
-                                type="button" 
-                                className="btn btn-dark"
-                                onClick={()=> decreaseQuantity(guitar.id)}
+                                <button
+                                  type="button"
+                                  className="btn btn-dark"
+                                  onClick={() => decreaseQuantity(guitar.id)}
                                 >
                                   -
                                 </button>
                                 {guitar.qty}
-                                <button 
-                                type="button" 
-                                className="btn btn-dark"
-                                onClick={() => increaseQuantity(guitar.id)}>
+                                <button
+                                  type="button"
+                                  className="btn btn-dark"
+                                  onClick={() => increaseQuantity(guitar.id)}
+                                >
                                   +
                                 </button>
                               </td>
@@ -74,7 +79,7 @@ export default function Header({ car,removeFromCar,increaseQuantity,decreaseQuan
                                 <button
                                   className="btn btn-danger"
                                   type="button"
-                                  onClick={()=> removeFromCar(guitar.id)}
+                                  onClick={() => removeFromCar(guitar.id)}
                                 >
                                   X
                                 </button>
@@ -84,14 +89,15 @@ export default function Header({ car,removeFromCar,increaseQuantity,decreaseQuan
                         </tbody>
                       </table>
                       <p className="text-end">
-                        Total pagar: <span className="fw-bold">${carTotal}</span>
+                        Total pagar:{" "}
+                        <span className="fw-bold">${carTotal}</span>
                       </p>
                     </>
                   )}
 
-                  <button 
-                  className="btn btn-dark w-100 mt-3 p-2"
-                  onClick={clearCar}
+                  <button
+                    className="btn btn-dark w-100 mt-3 p-2"
+                    onClick={clearCar}
                   >
                     Clear cart
                   </button>
